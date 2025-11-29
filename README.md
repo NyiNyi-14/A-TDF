@@ -1,26 +1,24 @@
 # Adaptive Input Shaper Design for Unknown Second-Order Systems with Real-Time Parameter Estimation
 
 <p align="center">
-  <img src="Figures/ff_block.png" width="900">
-</p>
-<p align="center">
-  Fig: Feedforward control scheme with parameter estimation and optimal input shaping for vibration suppression
+  <b>Feedforward control scheme with parameter estimation and optimal input shaping for vibration suppression</b><br>
+  <img src="Figures/ff_block.png" width="80%">
 </p>
 
 This work propose a feedforward control method that not only estimates system parameters online for a black-box second- order system, but also designs the input shaper adaptively in real-time. This repostitory contains the code, data, and methods used to design optimal input shaper and parameter estimator. 
 
-*Note: Certain code segments have been omitted due to ongoing manuscript reviews.*
+*Note: This project has been submitted to ACC 2026. Updates will be added as the review process progresses.*
 
 ---
 
 ## Project Structure
 
-- `SecondOrderSystem.py` – Defines the differential equation of a generic second-order system, given system parameters $\omega_{\mathrm{n}}$ and $\zeta$.
-- `Estimator.py` – Implements the estimation algorithm (detailed below).
-- `IS_A_T_Calc.py` – Calculates the $\mathcal{A}$ and $\mathcal{T}$ parameters of an input shaper calibrated to the system using $\omega_{\mathrm{n}}$ and $\zeta$.
-- `run_adaptive.py` – Runs multiple simulations of the adaptive input shaper across diverse scenarios.
-- `aIS_StepWise.py` – Simulates an adaptive input shaper with multiple step-wise changes after the estimation period.
-- `Adaptive_IS_3D.py` – Generates 3D surface plots showing the dependency of $\mathcal{A}$ and $\mathcal{T}$ over ranges of $\omega_{\mathrm{n}}$ and $\zeta$.
+  - The `Libraries` folder contains custom modules for system modeling, parameter estimation, and optimal input shaper design used by the main scripts.
+  - `run_ATDF.py` – Runs the feedforward simulation shown in the figure above, where the true system parameters $\zeta$ and $\omega_\mathrm{n}$ are estimated on the fly and the optimal input shaper is designed accordingly. Multiple simulations are supported with different sets of system parameters, allowing the algorithm to evaluate a diverse range of second-order system scenarios.
+
+  - `ATDF_stepwise.py` – Simulates an adaptive input shaper with multiple step-wise changes after the estimation period, reflecting real-world scenarios such as 3D-printing motion and gantry-crane movements.
+
+  - `parameter_sweep.py` – Generates 3D surface plots showing the dependency of $\mathcal{A}$ and $\mathcal{T}$ over ranges of $\omega_{\mathrm{n}}$ and $\zeta$.
 
 ---
 
@@ -29,7 +27,6 @@ This work propose a feedforward control method that not only estimates system pa
 - matplotlib==3.10.3
 - numpy==2.3.0
 - pandas==2.3.0
-- pyDOE==0.3.8
 - pyDOE==0.3.8
 - scipy==1.15.3
 - seaborn==0.13.2
@@ -48,7 +45,7 @@ pip install -r requirements.txt
 Download or clone the repository:
 
 ```bash
-git clone https://github.com/NyiNyi-14/Adaptive_Input_Shaper_for_Blackbox_2nd_Order_Sys.git
+git clone https://github.com/NyiNyi-14/A-TDF.git
 ```
 
 Make sure all scripts are in the same directory.
@@ -60,37 +57,42 @@ Before running the code, adjust the system parameters to configure your simulati
 - **System parameters**: `omega_test`, `zeta_test`  
 - **Time values**: `duration`, `identification_duration`, `dt`  
 
-### Step 3: Generate Figures and Tables
+### Step 3: Simulate the System
 
-Run the main scripts to simulate the system, view results, and generate figures and tables:
-
-```bash
-python run_adaptive.py
-```
-- Simulates the adaptive input shaper’s single-step behavior over a range of $\omega_{\mathrm{n}}$ and $\zeta$ values.  
+Run `run_ATDF.py` to observe the adaptive input shaper’s single-step behavior over a range of estimated $\omega_{\mathrm{n}}$ and $\zeta$ values:
 
 ```bash
-python aIS_StepWise.py
+python run_ATDF.py
 ```
-- Demonstrates optimal input shaper performance for multiple step-wise changes.  
+
+Run `ATDF_stepwise.py` to demonstrate the optimal input shaper performance under multiple step-wise reference changes:
+```bash
+python ATDF_stepwise.py
+```
 
 ---
 
-## Outputs
+## Results
 
-![Sample Frame](Figures/run_adaptive_1.png)
-**Fig:** Performance of the proposed method:  
-- (a–d) Varying $\zeta$ with $\tau = 2 \,\text{s}$ and $\omega_{\mathrm{n}} = \pi \,\text{rad/s}$  
-- (e–h) Varying $\omega_{\mathrm{n}}$ with $\tau = 2 \,\text{s}$ and $\zeta = 0.707$  
-- (i–l) Varying $\tau$ with $\omega_{\mathrm{n}} = 3\pi \,\text{rad/s}$ and $\zeta = 0.707$  
+<p align="center">
+  <b>Performance of the proposed method:</b><br>
+  <img src="Figures/run_adaptive_1.png" width="100%"><br>
+  (a–d) Varying &zeta; with &tau; = 2 s and &omega;<sub>n</sub> = &pi; rad/s <br>
+  (e–h) Varying &omega;<sub>n</sub> with &tau; = 2 s and &zeta; = 0.707 <br>
+  (i–l) Varying &tau; with &omega;<sub>n</sub> = 3&pi; rad/s and &zeta; = 0.707
+</p>
 
-![Sample Frame](Figures/StepWise.png)
-**Fig:** Feedforward control for step-wise reference tracking:  
-- **Top:** $\omega_{\mathrm{n}} = 3\pi \,\text{rad/s}$  
-- **Bottom:** $\omega_{\mathrm{n}} = 30\pi \,\text{rad/s}$  
+<p align="center">
+  <b>Feedforward control for step-wise reference tracking:</b><br>
+  <img src="Figures/StepWise.png" width="70%"><br>
+  (Top) &omega;<sub>n</sub> = 3&pi; rad/s  (b) &omega;<sub>n</sub> = 30&pi; rad/s
+</p>
 
-![Sample Frame](Figures/3D_plot.png)
-**Fig:** Dependency of input shaper parameters $\mathcal{A}$ and $\mathcal{T}$ on $\zeta$ and $\omega_{\mathrm{n}}$ under parameter sweep.  
+<p align="center">
+  <b>Dependency of input shaper parameters 𝒜 and 𝒯 on &zeta; and &omega;<sub>n</sub> under parameter sweep:</b><br>
+  <img src="Figures/3D_plot.png" width="70%"><br>
+</p>
+
 
 ---
 
