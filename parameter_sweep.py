@@ -1,8 +1,15 @@
 # %% Import Libraries
 import numpy as np
-from IS_A_T_Calc_2 import IS_A_T_Calc
 import matplotlib.pyplot as plt
 from matplotlib import cm
+
+import os
+os.chdir("...")
+print(os.getcwd())
+print(os.listdir())
+
+# Local
+from Libraries.IS_A_T_Calc import IS_A_T_Calc
 
 # %% System Parameters
 K = .01
@@ -52,7 +59,7 @@ surf = ax.plot_surface(
 ax.set(xlabel=r'$\omega$', ylabel=r'$\zeta$', zlabel=r'$A$')
 fig.colorbar(surf, shrink=0.6, aspect=10, pad=0.1)
 ax.view_init(elev=25, azim=135)
-style_3d_axes(ax)   # apply styling
+style_3d_axes(ax)  
 
 fig = plt.figure(figsize=(8,6))
 ax = fig.add_subplot(projection='3d')
@@ -68,7 +75,7 @@ surf = ax.plot_surface(
 ax.set(xlabel=r'$\omega$', ylabel=r'$\zeta$', zlabel=r'$T$')
 fig.colorbar(surf, shrink=0.6, aspect=10, pad=0.1)
 ax.view_init(elev=25, azim=135)
-style_3d_axes(ax)   # apply styling
+style_3d_axes(ax) 
 
 # plt.show()
 

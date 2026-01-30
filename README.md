@@ -7,7 +7,8 @@
 
 This work propose a feedforward control method that not only estimates system parameters online for a black-box second- order system, but also designs the input shaper adaptively in real-time. This repostitory contains the code, data, and methods used to design optimal input shaper and parameter estimator. 
 
-*Note: This project has been submitted to ACC 2026. Updates will be added as the review process progresses.*
+**Note:** This work has been accepted for publication at **ACC 2026**.  
+A preprint version is available on arXiv: https://arxiv.org/abs/2601.17210
 
 ---
 

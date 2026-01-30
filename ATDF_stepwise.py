@@ -9,9 +9,9 @@ print(os.getcwd())
 print(os.listdir())
 
 # Local
-from Estimator import Estimator
-from IS_A_T_Calc import IS_A_T_Calc
-from SecondOrderSystem import SecondOrderSystem
+from Libraries.Estimator import Estimator
+from Libraries.IS_A_T_Calc import IS_A_T_Calc
+from Libraries.SecondOrderSystem import SecondOrderSystem
 
 # %% System Parameters
 # Zeta and Omega_n values to be tested
