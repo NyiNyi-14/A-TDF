@@ -21,6 +21,9 @@ A preprint version is available on arXiv: https://arxiv.org/abs/2601.17210
 
   - `parameter_sweep.py` – Generates 3D surface plots showing the dependency of $\mathcal{A}$ and $\mathcal{T}$ over ranges of $\omega_{\mathrm{n}}$ and $\zeta$.
 
+  - `sensitivity_analysis.py` – Performs the sensitivity analysis of the input shaper parameters as defined in Eq. (20) of the paper, evaluating 
+  $S_\mathrm{A}^{\omega_\mathrm{n}}$, $S_\mathrm{A}^{\zeta}$, $S_\mathrm{T}^{\omega_\mathrm{n}}$, and $S_\mathrm{T}^{\zeta}$.
+
 ---
 
 ## Requirements
@@ -94,6 +97,10 @@ python ATDF_stepwise.py
   <img src="Figures/3D_plot.png" width="70%"><br>
 </p>
 
+<p align="center">
+  <b>Sensitivity of input shaper parameters 𝒜 and 𝒯 to variations in the damping ratio &zeta; (left, &omega;<sub>n</sub> = 3&pi;) and natural frequency &omega;<sub>n</sub> (right, &zeta; = 0.707).:</b><br>
+  <img src="Figures/sen_A_T.png" width="70%"><br>
+</p>
 
 ---
 
@@ -108,36 +115,17 @@ This project builds on developed control mechanisms, including:
 
 ## Citation
 
-If you use this work, please cite the related paper as follows:
+To acknowledge the use of this work, please cite the following publication:
 
+```bibtex
+@misc{aung2026adaptiveinputshaperdesign,
+      title={Adaptive Input Shaper Design for Unknown Second-Order Systems with Real-Time Parameter Estimation}, 
+      author={Nyi Nyi Aung and Bradley Wight and Adrian Stein},
+      year={2026},
+      eprint={2601.17210},
+      archivePrefix={arXiv},
+      primaryClass={eess.SY},
+      url={https://arxiv.org/abs/2601.17210}, 
+}
+```
 ---
-<!-- 
-## Author
-
-**Nyi Nyi Aung** 
-
-PhD Student, Mechanical and Industrial Engineering - LSU, USA
-
-MSc, Sustainable Transportation and Electrical Power Systems - UniOvi, Spain
-
-BE, Electrical Power - YTU, Myanmar
-
-##
-
-**Bradley Wight** 
-
-B.S. Student, Mechanical Engineering
-
-Louisiana State University
-
-##
-
-**Adrian Stein, PhD**
-
-Assistant Professor
-
-Department of Mechanical and Industrial Engineering
-
-Louisiana State University
-
-## -->
