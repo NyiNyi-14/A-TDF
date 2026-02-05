@@ -20,6 +20,11 @@ class PerformanceMetrics:
         self.total_RE = np.sum(np.abs(self.ref - feedback) / (np.abs(self.ref) + epsilon)) * dt # int over time
         return self.rise_time, self.settling_time, self.overshoot, self.ss_error, self.total_AE, self.total_RE
     
+    def settling_time(self, feedback):
+        ref_scalar = self.ref if np.isscalar(self.ref) else self.ref[-1]
+        self.settling_time = next(t for t in reversed(self.time) if abs(feedback[np.where(self.time == t)][0] - ref_scalar) > 0.02 * ref_scalar)
+        return self.settling_time
+
     def robustness(self, feedback):
         mean = np.mean(feedback, axis=0)
         deviation = np.std(feedback, axis=0)
